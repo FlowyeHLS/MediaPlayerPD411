@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>ICO/sound_active_speaker_audio_music_icon_196484.ico</file>
+    </qresource>
+</RCC>
