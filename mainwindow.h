@@ -18,7 +18,13 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-	void loadFileToPlayList(const QString& filename);
+	void initPlaylist();
+
+	void loadFileToPlaylist(const QString& filename);
+    void savePlaylist(const QString& filename);
+    void loadPlaylist(const QString& filename);
+    QVector<QString> loadPlaylistToArray(const QString& filename);
+
 
 private slots:
 	void on_pushButtonAdd_clicked();
@@ -35,18 +41,30 @@ private slots:
 
 	void on_duration_changed(qint64 duration);
 
-	void on_position_changed(qint64	position);
+	void on_position_changed(qint64 position);
 
+	void on_horizontalSliderTime_sliderMoved(int position);
 
+	void on_pushButtonShuffle_clicked();
 
-	void on_horizontalSliderTime_sliderMoved(qint64 position);
+	void on_pushButtonLoop_clicked();
+
+	void on_pushButtonDel_clicked();
+
+	void on_pushButtonClr_clicked();
+
+    void on_pushButtonDir_clicked();
 
 private:
+    void traverseDirectories(const QString& dirname);
+
     Ui::MainWindow *ui;
 	QMediaPlayer* m_player;
 	QMediaPlaylist* m_playlist;
 	QStandardItemModel* m_playlist_model;
 
-	QMediaPlayer m_duration_player;
+	bool shuffle;
+	bool loop;
+
 };
 #endif // MAINWINDOW_H
